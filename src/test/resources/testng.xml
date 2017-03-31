@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="vershyna" verbose="1">
+    <test name="e2e_tests">
+       <packages>
+            <package name="ua.com.vershyna.MainPageTest"/>
+        </packages>
+    </test>
+</suite>

@@ -1,0 +1,46 @@
+<suite name="Parallel Tests" verbose="1" thread-count="4" parallel="tests">
+	<tests>
+	<test name="Windows+Chrome Test">
+	  		<parameters>
+				<parameter name="platform" value="windows" />
+		  		<parameter name="browser" value="chrome" />
+	  		</parameters>
+	     	<classes>
+	      		<class name="com.compot.login.GoogleTest" />
+	    	</classes>
+	  	</test>
+	  	<!--<test name="Mac+Firefox Test">-->
+	  		<!--<parameters>-->
+		  		<!--<parameter name="platform" value="MAC" />-->
+		  		<!--<parameter name="browser" value="Firefox" />-->
+		  		<!--<parameter name="version" value="32.0.3" />-->
+		  		<!--<parameter name="url" value="http://dl.dropbox.com/u/55228056/bmicalculator.html"/>-->
+	  		<!--</parameters>-->
+	     	<!--<classes>-->
+	      		<!--<class name="testingtools.chapter.distributed_testing_with_selenium_grid.Java.SeGridTest" />-->
+	    	<!--</classes>-->
+		<!--</test>-->
+		<!--<test name="iOS Test">-->
+	  		<!--<parameters>-->
+		  		<!--<parameter name="platform" value="MAC" />-->
+		  		<!--<parameter name="browser" value="Firefox" />-->
+		  		<!--<parameter name="version" value="32.0.3" />-->
+		  		<!--<parameter name="url" value="http://dl.dropbox.com/u/55228056/mobilebmicalculator.html"/>-->
+	  		<!--</parameters>-->
+	    	 <!--<classes>-->
+	      		<!--<class name="testingtools.chapter.distributed_testing_with_selenium_grid.Java.SeGridTest" />-->
+	    	<!--</classes>-->
+	  	<!--</test>-->
+	 	<!--<test name="Andorid Test">-->
+	  		<!--<parameters>-->
+		  		<!--<parameter name="platform" value="Android" />-->
+		  		<!--<parameter name="browser" value="Android" />-->
+		  		<!--<parameter name="version" value="2.6" />-->
+		  		<!--<parameter name="url" value="http://dl.dropbox.com/u/55228056/mobilebmicalculator.html"/>-->
+	  		<!--</parameters>-->
+	     	<!--<classes>-->
+	      		<!--<class name="testingtools.chapter.distributed_testing_with_selenium_grid.Java.SeGridTest" />-->
+	    	<!--</classes>-->
+	  	<!--</test>-->
+	</tests>
+</suite>
