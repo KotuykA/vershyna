@@ -19,8 +19,6 @@ public class MainPage extends AbstractPage {
         super(driver);
     }
 
-    private By TECHByXpath = By.xpath(".//*[@id='slideshow0']/div[1]/div/div[4]");
-
     private By headerTopByXpath = By.xpath(".//*[@id='header']/div/div[@class='header-top']");
     private By logoByXpath = By.xpath(".//*[@id='logo']/a");
     private By searchFieldByID = By.id("filter_keyword");
@@ -37,9 +35,9 @@ public class MainPage extends AbstractPage {
     private By slideshowDotsByXpath = By.xpath(".//*[@id='slideshow0']/div[@class='owl-dots']");
     private By slideshowCarouselByXpath = By.xpath(".//*[@id='content']/script");
     private By bannersSmallBarByXpath = By.xpath(".//*[@id='content']/div[@class='block block-banner block-banner-40']/div[@class='banner-body']");
-
-
-
+    private By productBlockRecommendedTitleByXpath = By.xpath(".//*[@id='content']/div[@class='block product-list']/h2");
+    private By productBlockRecommendedByXpath = By.xpath(".//*[@id='content']/div[@class='block product-list']/div/div");
+    private By bannersBigBarByXpath = By.xpath(".//*[@id='content']/div[@class='block block-banner block-banner-34']/div[@class='banner-body']");
 
 
     public By getLogoByXpath() {
@@ -98,6 +96,17 @@ public class MainPage extends AbstractPage {
         return bannersSmallBarByXpath;
     }
 
+    public By getProductBlockRecommendedTitleByXpath() {
+        return productBlockRecommendedTitleByXpath;
+    }
+
+    public By getProductBlockRecommendedByXpath() {
+        return productBlockRecommendedByXpath;
+    }
+
+    public By getBannersBigBarByXpath() {
+        return bannersBigBarByXpath;
+    }
 
     @Step("Main page opening")
     public void openMainPage() {
@@ -151,8 +160,41 @@ public class MainPage extends AbstractPage {
         for (int i = 0; i < slideshowElements.size(); i++) {
             String linkDestionation = slideshowElements.get(i).getAttribute(tagName);
             elementsList.add(linkDestionation);
-            }
+        }
         return elementsList;
+    }
+
+    @Step("Check if all the elements from the list are visible")
+    public boolean elementsVisibility(List<WebElement> webElementList) {
+        for (int i = 0; i < webElementList.size(); i++) {
+            if (!(webElementList.get(i).isDisplayed())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Step("Check if a certain attribute in every element in a list is not empty.")
+    public boolean elementsAttributeIsNotEmpty(List<WebElement> webElementList, String attribute) {
+        for (int i = 0; i < webElementList.size(); i++) {
+            if (webElementList.get(i).getAttribute(attribute).length() == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Step("Check if every element in a list have text")
+    public boolean elementsContainsText(List<WebElement> webElementList) {
+        for (int i = 0; i < webElementList.size(); i++) {
+            if (webElementList.get(i).getText().length() == 0) {
+                System.out.println(webElementList.get(i).toString());
+                System.out.println(webElementList.get(i).getText().length());
+
+                return false;
+            }
+        }
+        return true;
     }
 
 }

@@ -73,7 +73,6 @@ public class MainPageTest extends WebDriverTestBase {
             "  navText: ['<i class=\"fa fa-chevron-left fa-5x\"></i>', '<i class=\"fa fa-chevron-right fa-5x\"></i>'],\n" +
             "});\n" +
             "-->";
-
     private String smartwoolSmallBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "mainpage/home-brands-block-smartwool-115x50.png";
     private String ospreySmallBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "mainpage/home-brands-block-osprey-58x50.png";
     private String seaToSummitSmallBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "mainpage/home-brands-block-sts-141x50.png";
@@ -81,19 +80,32 @@ public class MainPageTest extends WebDriverTestBase {
     private String marmotSmallBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "mainpage/home-brands-block-marmot-115x50.png";
     private String craftSmallBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "mainpage/home-brands-block-craft-98x50.png";
     private String buffSmallBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "mainpage/home-brands-block-buff-51x50.png";
+    private String productBlockRecommendedTitleText = "Рекомендуемые";
+    private int productBlockRecommendedQuantity = 8;
+    private String productBlockRecommendedImagesXpathLocator = "div/div[@class='image']";
+    private String productBlockRecommendedImagesLinksXpathLocator = "div/div[@class='image']/a";
+    private String productBlockRecommendedImagesLocationXpathLocator = "div/div[@class='image']/a/img";
+    private String productBlockRecommendedNamesXpathLocator = "div/div[@class='name']";
+    private String productBlockRecommendedNamesLinksXpathLocator = "div/div[@class='name']/a";
+    private String productBlockRecommendedProductCodeXpathLocator = "div/div[@class='sku']";
+    private String productBlockRecommendedPriceXpathLocator = "div/div[@class='price']";
+    private int bannersBigQuantity = 3;
+    private String seaToSummitBigBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "homepage-seat-to-summit-426x256.jpg";
+    private String nikwaxBigBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "homepage-nikwax-426x256.jpg";
+    private String marmotBigBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "homepage-marmot-426x256.jpg";
 
     private String emptyString = "";
     private String zeroValue = "0";
 
 
-    @Description("Main page opening")
+    @Description("Main page opening.")
     @BeforeClass()
     public void openMainPage() {
         MainPage mainPage = new MainPage(driver);
         mainPage.openMainPage();
     }
 
-    @Description("Header testing: ")
+    @Description("Smoke test: Header testing.")
     @Test()
     public void headerTest() {
         MainPage mainPage = new MainPage(driver);
@@ -120,7 +132,7 @@ public class MainPageTest extends WebDriverTestBase {
         // TODO check the element location in webPage.
     }
 
-    @Description("Search field testing: ")
+    @Description("Smoke test: Search field testing.")
     @Test()
     public void searchFieldTest() {
         MainPage mainPage = new MainPage(driver);
@@ -135,7 +147,7 @@ public class MainPageTest extends WebDriverTestBase {
         // TODO check the element location in webPage.
     }
 
-    @Description("Vershyna logo testing: ")
+    @Description("Smoke test: Vershyna logo testing.")
     @Test()
     public void logoVershynaTest() {
         MainPage mainPage = new MainPage(driver);
@@ -153,7 +165,7 @@ public class MainPageTest extends WebDriverTestBase {
         // TODO check the element location in webPage.
     }
 
-    @Description("Phone numbers testing: ")
+    @Description("Smoke test: Phone numbers testing.")
     @Test()
     public void phoneNumbersTest() {
         MainPage mainPage = new MainPage(driver);
@@ -173,7 +185,7 @@ public class MainPageTest extends WebDriverTestBase {
         // TODO check the element location in webPage.
     }
 
-    @Description("Phone numbers testing: ")
+    @Description("Smoke test: Phone numbers testing.")
     @Test()
     public void basketTest() {
         MainPage mainPage = new MainPage(driver);
@@ -195,7 +207,7 @@ public class MainPageTest extends WebDriverTestBase {
         // TODO check the element location in webPage.
     }
 
-    @Description("Head menu bar testing: ")
+    @Description("Smoke test: Head menu bar testing.")
     @Test()
     public void menuBarTest() {
         MainPage mainPage = new MainPage(driver);
@@ -229,7 +241,7 @@ public class MainPageTest extends WebDriverTestBase {
         // TODO check the elements location in webPage.
     }
 
-    @Description("Slideshow bar testing: ")
+    @Description("Smoke test: Slideshow bar testing.")
     @Test()
     public void slideshowBarTest() {
         MainPage mainPage = new MainPage(driver);
@@ -279,7 +291,7 @@ public class MainPageTest extends WebDriverTestBase {
         // TODO check the elements location in webPage.
     }
 
-    @Description("Banners small bar testing: ")
+    @Description("Smoke test: Banners small bar testing.")
     @Test()
     public void bannersSmallBarTest() {
         MainPage mainPage = new MainPage(driver);
@@ -316,4 +328,104 @@ public class MainPageTest extends WebDriverTestBase {
                 containsAll(bannersAltAntTitleList));
         // TODO check the elements location in webPage.
     }
+
+    @Description("Smoke test: Recommended products block title testing.")
+    @Test()
+    public void productBlockRecommendedTitleTest() {
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertEquals(mainPageTitle, driver.getTitle());
+
+        WebElement productBlockTitle = mainPage.searchElementByLocator(mainPage.getProductBlockRecommendedTitleByXpath());
+        Assert.assertTrue(productBlockTitle.isDisplayed());
+        Assert.assertEquals(productBlockRecommendedTitleText, productBlockTitle.getText());
+        // TODO check the elements location in webPage.
+    }
+
+    @Description("Smoke test: Recommended products block testing.")
+    @Test()
+    public void productBlockRecommendedTest() {
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertEquals(mainPageTitle, driver.getTitle());
+
+        List<WebElement> productBlockElements = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
+                PageUtils.ElementTags.div);
+        Assert.assertEquals(productBlockRecommendedQuantity, productBlockElements.size());
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockElements));
+
+        List<WebElement> productBlockImages = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
+                productBlockRecommendedImagesXpathLocator);
+        Assert.assertEquals(productBlockRecommendedQuantity, productBlockImages.size());
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockImages));
+
+        List<WebElement> productBlockImagesLinks = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
+                productBlockRecommendedImagesLinksXpathLocator);
+        Assert.assertEquals(productBlockRecommendedQuantity, productBlockImagesLinks.size());
+        Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockImagesLinks, PageUtils.ElementAttributes.href));
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockImagesLinks));
+
+        List<WebElement> productBlockImagesLocation = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
+                productBlockRecommendedImagesLocationXpathLocator);
+        Assert.assertEquals(productBlockRecommendedQuantity, productBlockImagesLocation.size());
+        Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockImagesLocation, PageUtils.ElementAttributes.src));
+        Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockImagesLocation, PageUtils.ElementAttributes.alt));
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockImagesLocation));
+
+        List<WebElement> productBlockNames = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
+                productBlockRecommendedNamesXpathLocator);
+        Assert.assertEquals(productBlockRecommendedQuantity, productBlockNames.size());
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockNames));
+
+        List<WebElement> productBlockNamesLinks = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
+                productBlockRecommendedNamesLinksXpathLocator);
+        Assert.assertEquals(productBlockRecommendedQuantity, productBlockNamesLinks.size());
+        Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockNamesLinks, PageUtils.ElementAttributes.href));
+        Assert.assertTrue(mainPage.elementsContainsText(productBlockNamesLinks));
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockNamesLinks));
+
+        List<WebElement> productBlockProductCode = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
+                productBlockRecommendedProductCodeXpathLocator);
+        Assert.assertEquals(productBlockRecommendedQuantity, productBlockProductCode.size());
+        Assert.assertTrue(mainPage.elementsContainsText(productBlockProductCode));
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockProductCode));
+
+        List<WebElement> productBlockPrice = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
+                productBlockRecommendedPriceXpathLocator);
+        Assert.assertEquals(productBlockRecommendedQuantity, productBlockPrice.size());
+        Assert.assertTrue(mainPage.elementsContainsText(productBlockPrice));
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockPrice));
+        // TODO check the elements location in webPage.
+    }
+
+    @Description("Smoke test: Banners big bar testing.")
+    @Test()
+    public void bannersBigBarTest() {
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertEquals(mainPageTitle, driver.getTitle());
+
+        List<WebElement> bannersElements = mainPage.webElementsListCreation(mainPage.getBannersBigBarByXpath(),
+                PageUtils.ElementTags.div_a);
+        List<String> bannersBigLinks = Arrays.asList(
+                PageUtils.VESHYNA_BASE_URL + PageUtils.SEATOSUMMIT,
+                PageUtils.VESHYNA_BASE_URL + PageUtils.NIKWAX,
+                PageUtils.VESHYNA_BASE_URL + PageUtils.MARMOT);
+        Assert.assertEquals(bannersBigQuantity, bannersBigLinks.size());
+        Assert.assertTrue(mainPage.stringListCreation(bannersElements, PageUtils.ElementAttributes.href).
+                containsAll(mainPage.elementsToLowercase(bannersBigLinks)));
+
+        List<WebElement> bannersElementsAttributes = mainPage.webElementsListCreation(mainPage.getBannersBigBarByXpath(),
+                PageUtils.ElementTags.div_a_img);
+        Assert.assertEquals(bannersBigQuantity, bannersElementsAttributes.size());
+        List<String> bannersLocationsList = Arrays.asList(seaToSummitBigBannerLocation, nikwaxBigBannerLocation,
+                marmotBigBannerLocation);
+        Assert.assertTrue(mainPage.stringListCreation(bannersElementsAttributes, PageUtils.ElementAttributes.src).
+                containsAll(bannersLocationsList));
+
+        List<String> bannersAltAntTitleList = Arrays.asList("Sea To Summit", PageUtils.NIKWAX, PageUtils.MARMOT); // change alt and title
+        Assert.assertTrue(mainPage.stringListCreation(bannersElementsAttributes, PageUtils.ElementAttributes.alt).
+                containsAll(bannersAltAntTitleList));
+        Assert.assertTrue(mainPage.stringListCreation(bannersElementsAttributes, PageUtils.ElementAttributes.title).
+                containsAll(bannersAltAntTitleList));
+        // TODO check the elements location in webPage.
+    }
+
 }
