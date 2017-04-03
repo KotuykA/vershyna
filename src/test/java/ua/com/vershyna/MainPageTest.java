@@ -96,6 +96,11 @@ public class MainPageTest extends WebDriverTestBase {
     private String productBlockNewArrivalsTitleText = "Новые поступления";
     private int productBlockNewArrivalsRecommendedQuantity = 4;
     private String productBlocNewsTitleText = "Новости";
+    private int newsBlocksQuantity = 4;
+    private String newsBlockHeadingsXpathLocator = "div/h3/a";
+    private String newsBlockImagesLinksXpathLocator = "div/div[@class='image']/img";
+    private String newsBlockDescriptionXpathLocator = "div/div[@class='news-story']";
+
 
 
     private String emptyString = "";
@@ -505,10 +510,46 @@ public class MainPageTest extends WebDriverTestBase {
         MainPage mainPage = new MainPage(driver);
         Assert.assertEquals(mainPageTitle, driver.getTitle());
 
-        WebElement productBlockTitle = mainPage.searchElementByLocator(mainPage.getProductBlockNewsTitleByXpath());
+        WebElement productBlockTitle = mainPage.searchElementByLocator(mainPage.getNewsBlockTitleByXpath());
         Assert.assertTrue(productBlockTitle.isDisplayed());
         Assert.assertEquals(productBlocNewsTitleText.toUpperCase(), productBlockTitle.getText());
         // TODO check the elements location in webPage.
+    }
+
+    @Description("Smoke test: News block testing.")
+    @Test()
+    public void newsBlockTest() {
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertEquals(mainPageTitle, driver.getTitle());
+
+        List<WebElement> newsBlockElements = mainPage.webElementsListCreation(mainPage.getNewsBlockByXpath(),
+                PageUtils.ElementTags.div);
+        Assert.assertEquals(newsBlocksQuantity, newsBlockElements.size());
+        Assert.assertTrue(mainPage.elementsVisibility(newsBlockElements));
+
+        List<WebElement> newsBlockImages = mainPage.webElementsListCreation(mainPage.getNewsBlockByXpath(),
+                productBlockImagesXpathLocator);
+        Assert.assertEquals(newsBlocksQuantity, newsBlockImages.size());
+        Assert.assertTrue(mainPage.elementsVisibility(newsBlockImages));
+
+        List<WebElement> newsBlockImagesLinks = mainPage.webElementsListCreation(mainPage.getNewsBlockByXpath(),
+                newsBlockImagesLinksXpathLocator);
+        Assert.assertEquals(newsBlocksQuantity, newsBlockImagesLinks.size());
+        Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(newsBlockImagesLinks, PageUtils.ElementAttributes.src));
+        Assert.assertTrue(mainPage.elementsVisibility(newsBlockImagesLinks));
+
+        List<WebElement> newsHeadings = mainPage.webElementsListCreation(mainPage.getNewsBlockByXpath(),
+                newsBlockHeadingsXpathLocator);
+        Assert.assertEquals(newsBlocksQuantity, newsHeadings.size());
+        Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(newsHeadings, PageUtils.ElementAttributes.href));
+        Assert.assertTrue(mainPage.elementsContainsText(newsHeadings));
+        Assert.assertTrue(mainPage.elementsVisibility(newsHeadings));
+
+        List<WebElement> newsDescriptions = mainPage.webElementsListCreation(mainPage.getNewsBlockByXpath(),
+                newsBlockDescriptionXpathLocator);
+        Assert.assertEquals(newsBlocksQuantity, newsDescriptions.size());
+        Assert.assertTrue(mainPage.elementsContainsText(newsDescriptions));
+        Assert.assertTrue(mainPage.elementsVisibility(newsDescriptions));
     }
 
 }

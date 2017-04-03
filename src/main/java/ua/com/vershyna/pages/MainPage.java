@@ -41,6 +41,7 @@ public class MainPage extends AbstractPage {
     private By productBlockNewArrivalsTitleByXpath = By.xpath(".//*[@id='content']/div[@class='block block-latest clear product-list']/h2");
     private By productBlockNewArrivalsByXpath = By.xpath(".//*[@id='content']/div[@class='block block-latest clear product-list']/div/div[@class='block-product product-grid']");
     private By productBlockNewsTitleByXpath = By.xpath(".//*[@id='content']/div[@class='block block-news']/h2");
+    private By productBlockNewsByXpath = By.xpath(".//*[@id='content']/div[@class='block block-news']/div");
 
 
     public By getLogoByXpath() {
@@ -118,9 +119,14 @@ public class MainPage extends AbstractPage {
     public By getProductBlockNewArrivalsByXpath() {
         return productBlockNewArrivalsByXpath;}
 
-    public By getProductBlockNewsTitleByXpath() {
+    public By getNewsBlockTitleByXpath() {
         return productBlockNewsTitleByXpath;
     }
+
+    public By getNewsBlockByXpath() {
+        return productBlockNewsByXpath;
+    }
+
 
     @Step("Main page opening")
     public void openMainPage() {
@@ -204,7 +210,6 @@ public class MainPage extends AbstractPage {
             if (webElementList.get(i).getText().length() == 0) {
                 System.out.println(webElementList.get(i).toString());
                 System.out.println(webElementList.get(i).getText().length());
-
                 return false;
             }
         }
