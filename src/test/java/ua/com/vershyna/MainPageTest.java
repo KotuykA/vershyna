@@ -43,7 +43,7 @@ public class MainPageTest extends WebDriverTestBase {
     private String specialEquipmentLinkText = "Спецснаряжение";
     private String accessoriesLinkText = "Аксессуары";
     private String brandsLinkText = "Бренды";
-    private String saleLinkText = "saleLink";
+    private String saleLinkText = "Распродажа";
     private List<String> owlNames = Arrays.asList(PageUtils.VESHYNA_BASE_URL + "osprey", PageUtils.VESHYNA_BASE_URL + "exped",
             PageUtils.VESHYNA_BASE_URL + "biolite", PageUtils.VESHYNA_BASE_URL + "kepki-buff");
     private String owlsStyleValue = "width: 1329px;";
@@ -231,13 +231,13 @@ public class MainPageTest extends WebDriverTestBase {
         Assert.assertTrue(brandsLink.isDisplayed());
         Assert.assertTrue(saleLink.isDisplayed());
 
-        Assert.assertEquals(tourismAndCampingLinkText, tourismAndCampingLink.getText());
-        Assert.assertEquals(clothesLinkText, clothesLink.getText());
-        Assert.assertEquals(winterSportLinkText, winterSportLink.getText());
-        Assert.assertEquals(specialEquipmentLinkText, specialEquipmentLink.getText());
-        Assert.assertEquals(accessoriesLinkText, accessoriesLink.getText());
-        Assert.assertEquals(brandsLinkText, brandsLink.getText());
-        Assert.assertEquals(saleLinkText, saleLink.getText());
+        Assert.assertEquals(tourismAndCampingLinkText.toUpperCase(), tourismAndCampingLink.getText());
+        Assert.assertEquals(clothesLinkText.toUpperCase(), clothesLink.getText());
+        Assert.assertEquals(winterSportLinkText.toUpperCase(), winterSportLink.getText());
+        Assert.assertEquals(specialEquipmentLinkText.toUpperCase(), specialEquipmentLink.getText());
+        Assert.assertEquals(accessoriesLinkText.toUpperCase(), accessoriesLink.getText());
+        Assert.assertEquals(brandsLinkText.toUpperCase(), brandsLink.getText());
+        Assert.assertEquals(saleLinkText.toUpperCase(), saleLink.getText());
         // TODO check the elements location in webPage.
     }
 
@@ -337,7 +337,7 @@ public class MainPageTest extends WebDriverTestBase {
 
         WebElement productBlockTitle = mainPage.searchElementByLocator(mainPage.getProductBlockRecommendedTitleByXpath());
         Assert.assertTrue(productBlockTitle.isDisplayed());
-        Assert.assertEquals(productBlockRecommendedTitleText, productBlockTitle.getText());
+        Assert.assertEquals(productBlockRecommendedTitleText.toUpperCase(), productBlockTitle.getText());
         // TODO check the elements location in webPage.
     }
 
