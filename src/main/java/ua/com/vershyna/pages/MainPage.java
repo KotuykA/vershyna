@@ -42,6 +42,8 @@ public class MainPage extends AbstractPage {
     private By productBlockNewArrivalsByXpath = By.xpath(".//*[@id='content']/div[@class='block block-latest clear product-list']/div/div[@class='block-product product-grid']");
     private By productBlockNewsTitleByXpath = By.xpath(".//*[@id='content']/div[@class='block block-news']/h2");
     private By productBlockNewsByXpath = By.xpath(".//*[@id='content']/div[@class='block block-news']/div");
+    private By showMoreButtonXpathLocator = By.xpath(".//*[@id='bottom-description']/a");
+
 
 
     public By getLogoByXpath() {
@@ -127,6 +129,9 @@ public class MainPage extends AbstractPage {
         return productBlockNewsByXpath;
     }
 
+    public By getShowMoreButtonXpathLocator() {
+        return showMoreButtonXpathLocator;
+    }
 
     @Step("Main page opening")
     public void openMainPage() {

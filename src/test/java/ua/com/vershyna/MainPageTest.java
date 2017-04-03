@@ -100,6 +100,7 @@ public class MainPageTest extends WebDriverTestBase {
     private String newsBlockHeadingsXpathLocator = "div/h3/a";
     private String newsBlockImagesLinksXpathLocator = "div/div[@class='image']/img";
     private String newsBlockDescriptionXpathLocator = "div/div[@class='news-story']";
+    private String showMoreButtonText = "Показать больше";
 
 
 
@@ -550,6 +551,18 @@ public class MainPageTest extends WebDriverTestBase {
         Assert.assertEquals(newsBlocksQuantity, newsDescriptions.size());
         Assert.assertTrue(mainPage.elementsContainsText(newsDescriptions));
         Assert.assertTrue(mainPage.elementsVisibility(newsDescriptions));
+    }
+
+    @Description("Smoke test: Show-more button testing.")
+    @Test()
+    public void showMoreButtonTest() {
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertEquals(mainPageTitle, driver.getTitle());
+
+        WebElement showMoreButton = mainPage.searchElementByLocator(mainPage.getShowMoreButtonXpathLocator());
+        Assert.assertTrue(showMoreButton.isDisplayed());
+        Assert.assertEquals(showMoreButtonText, showMoreButton.getText());
+        // TODO check the elements location in webPage.
     }
 
 }
