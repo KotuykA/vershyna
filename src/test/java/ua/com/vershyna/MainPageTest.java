@@ -95,6 +95,8 @@ public class MainPageTest extends WebDriverTestBase {
     private String marmotBigBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "homepage-marmot-426x256.jpg";
     private String productBlockNewArrivalsTitleText = "Новые поступления";
     private int productBlockNewArrivalsRecommendedQuantity = 4;
+    private String productBlocNewsTitleText = "Новости";
+
 
     private String emptyString = "";
     private String zeroValue = "0";
@@ -494,6 +496,18 @@ public class MainPageTest extends WebDriverTestBase {
         Assert.assertEquals(productBlockNewArrivalsRecommendedQuantity, productBlockPrice.size());
         Assert.assertTrue(mainPage.elementsContainsText(productBlockPrice));
         Assert.assertTrue(mainPage.elementsVisibility(productBlockPrice));
+        // TODO check the elements location in webPage.
+    }
+
+    @Description("Smoke test: News block title testing.")
+    @Test()
+    public void productBlockNewsTitleTest() {
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertEquals(mainPageTitle, driver.getTitle());
+
+        WebElement productBlockTitle = mainPage.searchElementByLocator(mainPage.getProductBlockNewsTitleByXpath());
+        Assert.assertTrue(productBlockTitle.isDisplayed());
+        Assert.assertEquals(productBlocNewsTitleText.toUpperCase(), productBlockTitle.getText());
         // TODO check the elements location in webPage.
     }
 
