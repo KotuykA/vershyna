@@ -82,17 +82,19 @@ public class MainPageTest extends WebDriverTestBase {
     private String buffSmallBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "mainpage/home-brands-block-buff-51x50.png";
     private String productBlockRecommendedTitleText = "Рекомендуемые";
     private int productBlockRecommendedQuantity = 8;
-    private String productBlockRecommendedImagesXpathLocator = "div/div[@class='image']";
-    private String productBlockRecommendedImagesLinksXpathLocator = "div/div[@class='image']/a";
-    private String productBlockRecommendedImagesLocationXpathLocator = "div/div[@class='image']/a/img";
-    private String productBlockRecommendedNamesXpathLocator = "div/div[@class='name']";
-    private String productBlockRecommendedNamesLinksXpathLocator = "div/div[@class='name']/a";
-    private String productBlockRecommendedProductCodeXpathLocator = "div/div[@class='sku']";
-    private String productBlockRecommendedPriceXpathLocator = "div/div[@class='price']";
+    private String productBlockImagesXpathLocator = "div/div[@class='image']";
+    private String productBlockImagesLinksXpathLocator = "div/div[@class='image']/a";
+    private String productBlockImagesLocationXpathLocator = "div/div[@class='image']/a/img";
+    private String productBlockNamesXpathLocator = "div/div[@class='name']";
+    private String productBlockNamesLinksXpathLocator = "div/div[@class='name']/a";
+    private String productBlockProductCodeXpathLocator = "div/div[@class='sku']";
+    private String productBlockPriceXpathLocator = "div/div[@class='price']";
     private int bannersBigQuantity = 3;
     private String seaToSummitBigBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "homepage-seat-to-summit-426x256.jpg";
     private String nikwaxBigBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "homepage-nikwax-426x256.jpg";
     private String marmotBigBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "homepage-marmot-426x256.jpg";
+    private String productBlockNewArrivalsTitleText = "Новые поступления";
+    private int productBlockNewArrivalsRecommendedQuantity = 4;
 
     private String emptyString = "";
     private String zeroValue = "0";
@@ -353,43 +355,43 @@ public class MainPageTest extends WebDriverTestBase {
         Assert.assertTrue(mainPage.elementsVisibility(productBlockElements));
 
         List<WebElement> productBlockImages = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
-                productBlockRecommendedImagesXpathLocator);
+                productBlockImagesXpathLocator);
         Assert.assertEquals(productBlockRecommendedQuantity, productBlockImages.size());
         Assert.assertTrue(mainPage.elementsVisibility(productBlockImages));
 
         List<WebElement> productBlockImagesLinks = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
-                productBlockRecommendedImagesLinksXpathLocator);
+                productBlockImagesLinksXpathLocator);
         Assert.assertEquals(productBlockRecommendedQuantity, productBlockImagesLinks.size());
         Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockImagesLinks, PageUtils.ElementAttributes.href));
         Assert.assertTrue(mainPage.elementsVisibility(productBlockImagesLinks));
 
         List<WebElement> productBlockImagesLocation = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
-                productBlockRecommendedImagesLocationXpathLocator);
+                productBlockImagesLocationXpathLocator);
         Assert.assertEquals(productBlockRecommendedQuantity, productBlockImagesLocation.size());
         Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockImagesLocation, PageUtils.ElementAttributes.src));
         Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockImagesLocation, PageUtils.ElementAttributes.alt));
         Assert.assertTrue(mainPage.elementsVisibility(productBlockImagesLocation));
 
         List<WebElement> productBlockNames = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
-                productBlockRecommendedNamesXpathLocator);
+                productBlockNamesXpathLocator);
         Assert.assertEquals(productBlockRecommendedQuantity, productBlockNames.size());
         Assert.assertTrue(mainPage.elementsVisibility(productBlockNames));
 
         List<WebElement> productBlockNamesLinks = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
-                productBlockRecommendedNamesLinksXpathLocator);
+                productBlockNamesLinksXpathLocator);
         Assert.assertEquals(productBlockRecommendedQuantity, productBlockNamesLinks.size());
         Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockNamesLinks, PageUtils.ElementAttributes.href));
         Assert.assertTrue(mainPage.elementsContainsText(productBlockNamesLinks));
         Assert.assertTrue(mainPage.elementsVisibility(productBlockNamesLinks));
 
         List<WebElement> productBlockProductCode = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
-                productBlockRecommendedProductCodeXpathLocator);
+                productBlockProductCodeXpathLocator);
         Assert.assertEquals(productBlockRecommendedQuantity, productBlockProductCode.size());
         Assert.assertTrue(mainPage.elementsContainsText(productBlockProductCode));
         Assert.assertTrue(mainPage.elementsVisibility(productBlockProductCode));
 
         List<WebElement> productBlockPrice = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
-                productBlockRecommendedPriceXpathLocator);
+                productBlockPriceXpathLocator);
         Assert.assertEquals(productBlockRecommendedQuantity, productBlockPrice.size());
         Assert.assertTrue(mainPage.elementsContainsText(productBlockPrice));
         Assert.assertTrue(mainPage.elementsVisibility(productBlockPrice));
@@ -425,6 +427,73 @@ public class MainPageTest extends WebDriverTestBase {
                 containsAll(bannersAltAntTitleList));
         Assert.assertTrue(mainPage.stringListCreation(bannersElementsAttributes, PageUtils.ElementAttributes.title).
                 containsAll(bannersAltAntTitleList));
+        // TODO check the elements location in webPage.
+    }
+
+    @Description("Smoke test: New arrivals block title testing.")
+    @Test()
+    public void productBlockNewArrivalsTitleTest() {
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertEquals(mainPageTitle, driver.getTitle());
+
+        WebElement productBlockTitle = mainPage.searchElementByLocator(mainPage.getProductBlockNewArrivalsTitleByXpath());
+        Assert.assertTrue(productBlockTitle.isDisplayed());
+        Assert.assertEquals(productBlockNewArrivalsTitleText.toUpperCase(), productBlockTitle.getText());
+        // TODO check the elements location in webPage.
+    }
+
+    @Description("Smoke test: New arrivals product block testing.")
+    @Test()
+    public void productBlockNewArrivalsTest() {
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertEquals(mainPageTitle, driver.getTitle());
+
+        List<WebElement> productBlockElements = mainPage.webElementsListCreation(mainPage.getProductBlockNewArrivalsByXpath(),
+                PageUtils.ElementTags.div);
+        Assert.assertEquals(productBlockNewArrivalsRecommendedQuantity, productBlockElements.size());
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockElements));
+
+        List<WebElement> productBlockImages = mainPage.webElementsListCreation(mainPage.getProductBlockNewArrivalsByXpath(),
+                productBlockImagesXpathLocator);
+        Assert.assertEquals(productBlockNewArrivalsRecommendedQuantity, productBlockImages.size());
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockImages));
+
+        List<WebElement> productBlockImagesLinks = mainPage.webElementsListCreation(mainPage.getProductBlockNewArrivalsByXpath(),
+                productBlockImagesLinksXpathLocator);
+        Assert.assertEquals(productBlockNewArrivalsRecommendedQuantity, productBlockImagesLinks.size());
+        Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockImagesLinks, PageUtils.ElementAttributes.href));
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockImagesLinks));
+
+        List<WebElement> productBlockImagesLocation = mainPage.webElementsListCreation(mainPage.getProductBlockNewArrivalsByXpath(),
+                productBlockImagesLocationXpathLocator);
+        Assert.assertEquals(productBlockNewArrivalsRecommendedQuantity, productBlockImagesLocation.size());
+        Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockImagesLocation, PageUtils.ElementAttributes.src));
+        Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockImagesLocation, PageUtils.ElementAttributes.alt));
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockImagesLocation));
+
+        List<WebElement> productBlockNames = mainPage.webElementsListCreation(mainPage.getProductBlockNewArrivalsByXpath(),
+                productBlockNamesXpathLocator);
+        Assert.assertEquals(productBlockNewArrivalsRecommendedQuantity, productBlockNames.size());
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockNames));
+
+        List<WebElement> productBlockNamesLinks = mainPage.webElementsListCreation(mainPage.getProductBlockNewArrivalsByXpath(),
+                productBlockNamesLinksXpathLocator);
+        Assert.assertEquals(productBlockNewArrivalsRecommendedQuantity, productBlockNamesLinks.size());
+        Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockNamesLinks, PageUtils.ElementAttributes.href));
+        Assert.assertTrue(mainPage.elementsContainsText(productBlockNamesLinks));
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockNamesLinks));
+
+        List<WebElement> productBlockProductCode = mainPage.webElementsListCreation(mainPage.getProductBlockNewArrivalsByXpath(),
+                productBlockProductCodeXpathLocator);
+        Assert.assertEquals(productBlockNewArrivalsRecommendedQuantity, productBlockProductCode.size());
+        Assert.assertTrue(mainPage.elementsContainsText(productBlockProductCode));
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockProductCode));
+
+        List<WebElement> productBlockPrice = mainPage.webElementsListCreation(mainPage.getProductBlockNewArrivalsByXpath(),
+                productBlockPriceXpathLocator);
+        Assert.assertEquals(productBlockNewArrivalsRecommendedQuantity, productBlockPrice.size());
+        Assert.assertTrue(mainPage.elementsContainsText(productBlockPrice));
+        Assert.assertTrue(mainPage.elementsVisibility(productBlockPrice));
         // TODO check the elements location in webPage.
     }
 

@@ -38,6 +38,8 @@ public class MainPage extends AbstractPage {
     private By productBlockRecommendedTitleByXpath = By.xpath(".//*[@id='content']/div[@class='block product-list']/h2");
     private By productBlockRecommendedByXpath = By.xpath(".//*[@id='content']/div[@class='block product-list']/div/div");
     private By bannersBigBarByXpath = By.xpath(".//*[@id='content']/div[@class='block block-banner block-banner-34']/div[@class='banner-body']");
+    private By productBlockNewArrivalsTitleByXpath = By.xpath(".//*[@id='content']/div[@class='block block-latest clear product-list']/h2");
+    private By productBlockNewArrivalsByXpath = By.xpath(".//*[@id='content']/div[@class='block block-latest clear product-list']/div/div[@class='block-product product-grid']");
 
 
     public By getLogoByXpath() {
@@ -107,6 +109,13 @@ public class MainPage extends AbstractPage {
     public By getBannersBigBarByXpath() {
         return bannersBigBarByXpath;
     }
+
+    public By getProductBlockNewArrivalsTitleByXpath() {
+        return productBlockNewArrivalsTitleByXpath;
+    }
+
+    public By getProductBlockNewArrivalsByXpath() {
+        return productBlockNewArrivalsByXpath;}
 
     @Step("Main page opening")
     public void openMainPage() {
