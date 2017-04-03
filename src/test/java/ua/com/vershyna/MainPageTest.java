@@ -81,7 +81,10 @@ public class MainPageTest extends WebDriverTestBase {
     private String craftSmallBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "mainpage/home-brands-block-craft-98x50.png";
     private String buffSmallBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "mainpage/home-brands-block-buff-51x50.png";
     private String productBlockRecommendedTitleText = "Рекомендуемые";
-    private int productBlockRecommendedQuantity = 8;
+    private int intEight = 8;
+    private int intSix = 6;
+    private int intFour = 4;
+    private int intThree = 3;
     private String productBlockImagesXpathLocator = "div/div[@class='image']";
     private String productBlockImagesLinksXpathLocator = "div/div[@class='image']/a";
     private String productBlockImagesLocationXpathLocator = "div/div[@class='image']/a/img";
@@ -89,19 +92,35 @@ public class MainPageTest extends WebDriverTestBase {
     private String productBlockNamesLinksXpathLocator = "div/div[@class='name']/a";
     private String productBlockProductCodeXpathLocator = "div/div[@class='sku']";
     private String productBlockPriceXpathLocator = "div/div[@class='price']";
-    private int bannersBigQuantity = 3;
     private String seaToSummitBigBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "homepage-seat-to-summit-426x256.jpg";
     private String nikwaxBigBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "homepage-nikwax-426x256.jpg";
     private String marmotBigBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "homepage-marmot-426x256.jpg";
     private String productBlockNewArrivalsTitleText = "Новые поступления";
     private int productBlockNewArrivalsRecommendedQuantity = 4;
     private String productBlocNewsTitleText = "Новости";
-    private int newsBlocksQuantity = 4;
     private String newsBlockHeadingsXpathLocator = "div/h3/a";
     private String newsBlockImagesLinksXpathLocator = "div/div[@class='image']/img";
     private String newsBlockDescriptionXpathLocator = "div/div[@class='news-story']";
     private String showMoreButtonText = "Показать больше";
+    private String footerBlockOneHeadersXpathLocator = "div/h3";
+    private List<String> footerImagesClasses = Arrays.asList("fa fa-comments", "fa fa-info-circle", "fa fa-gift", "fa fa-newspaper-o");
+    private String footerBlockOneHeadersImagesXpathLocator = "div/h3/i";
+    private List<String> footerContactsText = Arrays.asList("Пн-Пт с 10:00 до 18:00", "Сб-Вс выходные дни", "099 661-3902", "093 923-3929", "096 363-2239", "info@vershyna.com.ua");
+    private String footerBlockOneContactsTextXpathLocator = "div[1]/ul/li";
+    private String footerBlockOneInformationXpathLocator = "div[2]/ul/li/a";
+    private List<String> footerInformationText = Arrays.asList("Доставка и оплата", "Гарантия", "Возврат", "Контакты");
+    private List<String> footerInformationLinks = Arrays.asList(PageUtils.VESHYNA_BASE_URL + "shipping-and-payment",
+            PageUtils.VESHYNA_BASE_URL + "garantiya", PageUtils.VESHYNA_BASE_URL + "vozvrat", PageUtils.VESHYNA_BASE_URL + "contacts");
+    private List<String> footerProfitablyText = Arrays.asList("Акции", "Распродажа", "Программа лояльности");
+    private List<String> footerProfitablyLinks = Arrays.asList(PageUtils.VESHYNA_BASE_URL + "discount",
+            PageUtils.VESHYNA_BASE_URL + "rasprodazha", PageUtils.VESHYNA_BASE_URL + "programma-loyalnosti");
+    private String footerBlockOneProfitablyXpathLocator = "div[3]/ul/li/a";
+    private String footerSalesClass = "sales";
 
+    private List<String> footerStayUpToDateText = Arrays.asList("Новинки", "Новости", "Блог");
+    private List<String> footerStayUpToDateLinks = Arrays.asList(PageUtils.VESHYNA_BASE_URL + "novinki",
+            PageUtils.VESHYNA_BASE_URL + "news", PageUtils.VESHYNA_BASE_URL + "blog");
+    private String footerBlockOneStayUpToDateXpathLocator = "div[4]/ul/li/a";
 
 
     private String emptyString = "";
@@ -359,48 +378,48 @@ public class MainPageTest extends WebDriverTestBase {
 
         List<WebElement> productBlockElements = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
                 PageUtils.ElementTags.div);
-        Assert.assertEquals(productBlockRecommendedQuantity, productBlockElements.size());
+        Assert.assertEquals(intEight, productBlockElements.size());
         Assert.assertTrue(mainPage.elementsVisibility(productBlockElements));
 
         List<WebElement> productBlockImages = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
                 productBlockImagesXpathLocator);
-        Assert.assertEquals(productBlockRecommendedQuantity, productBlockImages.size());
+        Assert.assertEquals(intEight, productBlockImages.size());
         Assert.assertTrue(mainPage.elementsVisibility(productBlockImages));
 
         List<WebElement> productBlockImagesLinks = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
                 productBlockImagesLinksXpathLocator);
-        Assert.assertEquals(productBlockRecommendedQuantity, productBlockImagesLinks.size());
+        Assert.assertEquals(intEight, productBlockImagesLinks.size());
         Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockImagesLinks, PageUtils.ElementAttributes.href));
         Assert.assertTrue(mainPage.elementsVisibility(productBlockImagesLinks));
 
         List<WebElement> productBlockImagesLocation = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
                 productBlockImagesLocationXpathLocator);
-        Assert.assertEquals(productBlockRecommendedQuantity, productBlockImagesLocation.size());
+        Assert.assertEquals(intEight, productBlockImagesLocation.size());
         Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockImagesLocation, PageUtils.ElementAttributes.src));
         Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockImagesLocation, PageUtils.ElementAttributes.alt));
         Assert.assertTrue(mainPage.elementsVisibility(productBlockImagesLocation));
 
         List<WebElement> productBlockNames = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
                 productBlockNamesXpathLocator);
-        Assert.assertEquals(productBlockRecommendedQuantity, productBlockNames.size());
+        Assert.assertEquals(intEight, productBlockNames.size());
         Assert.assertTrue(mainPage.elementsVisibility(productBlockNames));
 
         List<WebElement> productBlockNamesLinks = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
                 productBlockNamesLinksXpathLocator);
-        Assert.assertEquals(productBlockRecommendedQuantity, productBlockNamesLinks.size());
+        Assert.assertEquals(intEight, productBlockNamesLinks.size());
         Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(productBlockNamesLinks, PageUtils.ElementAttributes.href));
         Assert.assertTrue(mainPage.elementsContainsText(productBlockNamesLinks));
         Assert.assertTrue(mainPage.elementsVisibility(productBlockNamesLinks));
 
         List<WebElement> productBlockProductCode = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
                 productBlockProductCodeXpathLocator);
-        Assert.assertEquals(productBlockRecommendedQuantity, productBlockProductCode.size());
+        Assert.assertEquals(intEight, productBlockProductCode.size());
         Assert.assertTrue(mainPage.elementsContainsText(productBlockProductCode));
         Assert.assertTrue(mainPage.elementsVisibility(productBlockProductCode));
 
         List<WebElement> productBlockPrice = mainPage.webElementsListCreation(mainPage.getProductBlockRecommendedByXpath(),
                 productBlockPriceXpathLocator);
-        Assert.assertEquals(productBlockRecommendedQuantity, productBlockPrice.size());
+        Assert.assertEquals(intEight, productBlockPrice.size());
         Assert.assertTrue(mainPage.elementsContainsText(productBlockPrice));
         Assert.assertTrue(mainPage.elementsVisibility(productBlockPrice));
         // TODO check the elements location in webPage.
@@ -418,13 +437,13 @@ public class MainPageTest extends WebDriverTestBase {
                 PageUtils.VESHYNA_BASE_URL + PageUtils.SEATOSUMMIT,
                 PageUtils.VESHYNA_BASE_URL + PageUtils.NIKWAX,
                 PageUtils.VESHYNA_BASE_URL + PageUtils.MARMOT);
-        Assert.assertEquals(bannersBigQuantity, bannersBigLinks.size());
+        Assert.assertEquals(intThree, bannersBigLinks.size());
         Assert.assertTrue(mainPage.stringListCreation(bannersElements, PageUtils.ElementAttributes.href).
                 containsAll(mainPage.elementsToLowercase(bannersBigLinks)));
 
         List<WebElement> bannersElementsAttributes = mainPage.webElementsListCreation(mainPage.getBannersBigBarByXpath(),
                 PageUtils.ElementTags.div_a_img);
-        Assert.assertEquals(bannersBigQuantity, bannersElementsAttributes.size());
+        Assert.assertEquals(intThree, bannersElementsAttributes.size());
         List<String> bannersLocationsList = Arrays.asList(seaToSummitBigBannerLocation, nikwaxBigBannerLocation,
                 marmotBigBannerLocation);
         Assert.assertTrue(mainPage.stringListCreation(bannersElementsAttributes, PageUtils.ElementAttributes.src).
@@ -525,30 +544,30 @@ public class MainPageTest extends WebDriverTestBase {
 
         List<WebElement> newsBlockElements = mainPage.webElementsListCreation(mainPage.getNewsBlockByXpath(),
                 PageUtils.ElementTags.div);
-        Assert.assertEquals(newsBlocksQuantity, newsBlockElements.size());
+        Assert.assertEquals(intFour, newsBlockElements.size());
         Assert.assertTrue(mainPage.elementsVisibility(newsBlockElements));
 
         List<WebElement> newsBlockImages = mainPage.webElementsListCreation(mainPage.getNewsBlockByXpath(),
                 productBlockImagesXpathLocator);
-        Assert.assertEquals(newsBlocksQuantity, newsBlockImages.size());
+        Assert.assertEquals(intFour, newsBlockImages.size());
         Assert.assertTrue(mainPage.elementsVisibility(newsBlockImages));
 
         List<WebElement> newsBlockImagesLinks = mainPage.webElementsListCreation(mainPage.getNewsBlockByXpath(),
                 newsBlockImagesLinksXpathLocator);
-        Assert.assertEquals(newsBlocksQuantity, newsBlockImagesLinks.size());
+        Assert.assertEquals(intFour, newsBlockImagesLinks.size());
         Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(newsBlockImagesLinks, PageUtils.ElementAttributes.src));
         Assert.assertTrue(mainPage.elementsVisibility(newsBlockImagesLinks));
 
         List<WebElement> newsHeadings = mainPage.webElementsListCreation(mainPage.getNewsBlockByXpath(),
                 newsBlockHeadingsXpathLocator);
-        Assert.assertEquals(newsBlocksQuantity, newsHeadings.size());
+        Assert.assertEquals(intFour, newsHeadings.size());
         Assert.assertTrue(mainPage.elementsAttributeIsNotEmpty(newsHeadings, PageUtils.ElementAttributes.href));
         Assert.assertTrue(mainPage.elementsContainsText(newsHeadings));
         Assert.assertTrue(mainPage.elementsVisibility(newsHeadings));
 
         List<WebElement> newsDescriptions = mainPage.webElementsListCreation(mainPage.getNewsBlockByXpath(),
                 newsBlockDescriptionXpathLocator);
-        Assert.assertEquals(newsBlocksQuantity, newsDescriptions.size());
+        Assert.assertEquals(intFour, newsDescriptions.size());
         Assert.assertTrue(mainPage.elementsContainsText(newsDescriptions));
         Assert.assertTrue(mainPage.elementsVisibility(newsDescriptions));
     }
@@ -562,7 +581,66 @@ public class MainPageTest extends WebDriverTestBase {
         WebElement showMoreButton = mainPage.searchElementByLocator(mainPage.getShowMoreButtonXpathLocator());
         Assert.assertTrue(showMoreButton.isDisplayed());
         Assert.assertEquals(showMoreButtonText, showMoreButton.getText());
-        // TODO check the elements location in webPage.
+    }
+
+    @Description("Smoke test: Block 1 footer testing.")
+    @Test()
+    public void footerBlockOneTest() {
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertEquals(mainPageTitle, driver.getTitle());
+
+        WebElement footerBlockOne = mainPage.searchElementByLocator(mainPage.getFooterBlockOneXpathLocator());
+        Assert.assertTrue(footerBlockOne.isDisplayed());
+
+        List<WebElement> footerBlockOneHeaders = mainPage.webElementsListCreation(mainPage.getFooterBlockOneXpathLocator(),
+                footerBlockOneHeadersXpathLocator);
+        Assert.assertEquals(intFour, footerBlockOneHeaders.size());
+        Assert.assertTrue(mainPage.elementsContainsText(footerBlockOneHeaders));
+        Assert.assertTrue(mainPage.elementsVisibility(footerBlockOneHeaders));
+
+        List<WebElement> footerBlockOneHeadersImages = mainPage.webElementsListCreation(mainPage.getFooterBlockOneXpathLocator(),
+                footerBlockOneHeadersImagesXpathLocator);
+        Assert.assertEquals(intFour, footerBlockOneHeadersImages.size());
+        Assert.assertTrue(mainPage.stringListCreation(footerBlockOneHeadersImages, PageUtils.ElementAttributes.clas).
+                containsAll(footerImagesClasses));
+        Assert.assertTrue(mainPage.elementsVisibility(footerBlockOneHeadersImages));
+
+        List<String> footerBlockOneContactsText = mainPage.stringListTextCreation(mainPage.webElementsListCreation(mainPage.getFooterBlockOneXpathLocator(),
+                footerBlockOneContactsTextXpathLocator));
+        Assert.assertEquals(intSix, footerBlockOneContactsText.size());
+        Assert.assertTrue(footerBlockOneContactsText.containsAll(footerContactsText));
+
+        List<WebElement> footerBlockOneContactsElement = mainPage.webElementsListCreation(mainPage.getFooterBlockOneXpathLocator(),
+                footerBlockOneContactsTextXpathLocator);
+        Assert.assertTrue(mainPage.elementsVisibility(footerBlockOneContactsElement));
+
+        List<WebElement> footerBlockOneInformationElements = mainPage.webElementsListCreation(mainPage.getFooterBlockOneXpathLocator(),
+                footerBlockOneInformationXpathLocator);
+        Assert.assertEquals(intFour, footerBlockOneInformationElements.size());
+        Assert.assertTrue(mainPage.stringListCreation(footerBlockOneInformationElements, PageUtils.ElementAttributes.href).
+                containsAll(footerInformationLinks));
+        Assert.assertEquals(mainPage.stringListTextCreation(footerBlockOneInformationElements), footerInformationText);
+        Assert.assertTrue(mainPage.elementsVisibility(footerBlockOneInformationElements));
+
+        List<WebElement> footerBlockOneProfitablyElements = mainPage.webElementsListCreation(mainPage.getFooterBlockOneXpathLocator(),
+                footerBlockOneProfitablyXpathLocator);
+        Assert.assertEquals(intThree, footerBlockOneProfitablyElements.size());
+        Assert.assertTrue(mainPage.stringListCreation(footerBlockOneProfitablyElements, PageUtils.ElementAttributes.href).
+                containsAll(footerProfitablyLinks));
+        Assert.assertTrue(mainPage.checkIfAttributeValueIsPresent(footerBlockOneProfitablyElements,
+                PageUtils.ElementAttributes.clas, footerSalesClass));
+        Assert.assertEquals(mainPage.stringListTextCreation(footerBlockOneProfitablyElements), footerProfitablyText);
+        Assert.assertTrue(mainPage.elementsVisibility(footerBlockOneProfitablyElements));
+
+        List<WebElement> footerBlockOneStayUpToDateElements = mainPage.webElementsListCreation(mainPage.getFooterBlockOneXpathLocator(),
+                footerBlockOneStayUpToDateXpathLocator);
+        Assert.assertEquals(intThree, footerBlockOneStayUpToDateElements.size());
+        Assert.assertTrue(mainPage.stringListCreation(footerBlockOneStayUpToDateElements, PageUtils.ElementAttributes.href).
+                containsAll(footerStayUpToDateLinks));
+        Assert.assertTrue(mainPage.checkIfAttributeValueIsPresent(footerBlockOneStayUpToDateElements,
+                PageUtils.ElementAttributes.clas, footerSalesClass));
+        Assert.assertEquals(mainPage.stringListTextCreation(footerBlockOneStayUpToDateElements), footerStayUpToDateText);
+        Assert.assertTrue(mainPage.elementsVisibility(footerBlockOneStayUpToDateElements));
     }
 
 }

@@ -43,6 +43,8 @@ public class MainPage extends AbstractPage {
     private By productBlockNewsTitleByXpath = By.xpath(".//*[@id='content']/div[@class='block block-news']/h2");
     private By productBlockNewsByXpath = By.xpath(".//*[@id='content']/div[@class='block block-news']/div");
     private By showMoreButtonXpathLocator = By.xpath(".//*[@id='bottom-description']/a");
+    private By footerBlockOneXpathLocator = By.xpath(".//*[@id='footer']/div[@class='block1']/div[@class='wrapper']/div[@class='menu']");
+
 
 
 
@@ -133,6 +135,10 @@ public class MainPage extends AbstractPage {
         return showMoreButtonXpathLocator;
     }
 
+    public By getFooterBlockOneXpathLocator() {
+        return footerBlockOneXpathLocator;
+    }
+
     @Step("Main page opening")
     public void openMainPage() {
         openPage(PageUtils.VESHYNA_BASE_URL);
@@ -185,6 +191,16 @@ public class MainPage extends AbstractPage {
         for (int i = 0; i < slideshowElements.size(); i++) {
             String linkDestionation = slideshowElements.get(i).getAttribute(tagName);
             elementsList.add(linkDestionation);
+        }
+        return elementsList;
+    }
+
+    @Step("Creation List<String> via the getText() from List<WebElement>")
+    public List<String> stringListTextCreation(List<WebElement> elements) {
+        List<String> elementsList = new ArrayList<>();
+        for (int i = 0; i < elements.size(); i++) {
+            String text = elements.get(i).getText();
+            elementsList.add(text);
         }
         return elementsList;
     }
