@@ -125,7 +125,7 @@ public class MainPageTest extends WebDriverTestBase {
     private String footerBlockTwoHeadersXpathLocator = "div/span";
     private List<String> footerSocialHeaderText = Arrays.asList("Присоединяйтесь в соцсетях:".toUpperCase(),
             "Читайте и\n".toUpperCase() + "смотрите обзоры".toUpperCase(), "Будьте на связи\n".toUpperCase() + "с нами".toUpperCase());
-    private List<String> footerSocialIconsClass = Arrays.asList("vk-b", "fb-b","gp-b", "ig-b","bl-b","yt-b","sk-b");
+    private List<String> footerSocialIconsClass = Arrays.asList("vk-b", "fb-b", "gp-b", "ig-b", "bl-b", "yt-b", "sk-b");
     private String footerBlockTwoSocialIconsXpathLocator = "div/a";
     private String targetTagValue = "_blank";
     private String vkLinkVershyna = "http://vk.com/vershyna";
@@ -135,10 +135,7 @@ public class MainPageTest extends WebDriverTestBase {
     private String blogLinkVershyna = "https://vershyna.com.ua/blog";
     private String youTubeLinkVershyna = "http://www.youtube.com/vershyna";
     private String skypeLinkVershyna = "skype:vershyna-kiev?chat";
-
-
-
-
+    private String copyrightVershynaText = "© 2010-2017 Интернет-магазин \"Вершина\"";
 
 
     private String emptyString = "";
@@ -152,7 +149,7 @@ public class MainPageTest extends WebDriverTestBase {
         mainPage.openMainPage();
     }
 
-    @Description("Smoke test: Header testing.")
+    @Description("Smoke main page test: Header testing.")
     @Test()
     public void headerTest() {
         MainPage mainPage = new MainPage(driver);
@@ -176,10 +173,10 @@ public class MainPageTest extends WebDriverTestBase {
         Assert.assertEquals(contactsLinkDestination, contactsLink.getAttribute(PageUtils.ElementAttributes.href));
         Assert.assertEquals(contactsLinkText, contactsLink.getText());
 
-        // TODO check the element location in webPage.
+        // TODO check the element location on webPage.
     }
 
-    @Description("Smoke test: Search field testing.")
+    @Description("Smoke main page test: Search field testing.")
     @Test()
     public void searchFieldTest() {
         MainPage mainPage = new MainPage(driver);
@@ -191,10 +188,10 @@ public class MainPageTest extends WebDriverTestBase {
         Assert.assertEquals(placeholderSearchField, searchField.getAttribute(PageUtils.ElementAttributes.placeholder));
         WebElement searchButton = mainPage.searchElementByLocator(mainPage.getSearchButtonByXpath());
         Assert.assertTrue(searchButton.isDisplayed());
-        // TODO check the element location in webPage.
+        // TODO check the element location on webPage.
     }
 
-    @Description("Smoke test: Vershyna logo testing.")
+    @Description("Smoke main page test: Vershyna logo testing.")
     @Test()
     public void logoVershynaTest() {
         MainPage mainPage = new MainPage(driver);
@@ -209,10 +206,10 @@ public class MainPageTest extends WebDriverTestBase {
         Assert.assertEquals(logoLocation, logo.getAttribute(PageUtils.ElementAttributes.src));
         Assert.assertEquals(storeTitle, logo.getAttribute(PageUtils.ElementAttributes.title));
         Assert.assertEquals(storeTitle, logo.getAttribute(PageUtils.ElementAttributes.alt));
-        // TODO check the element location in webPage.
+        // TODO check the element location on webPage.
     }
 
-    @Description("Smoke test: Phone numbers testing.")
+    @Description("Smoke main page test: Phone numbers testing.")
     @Test()
     public void phoneNumbersTest() {
         MainPage mainPage = new MainPage(driver);
@@ -229,10 +226,10 @@ public class MainPageTest extends WebDriverTestBase {
         WebElement phoneIconViber = mainPage.searchElementByLocator(mainPage.getPhoneIconViberByXpath());
         Assert.assertTrue(phoneIconViber.isDisplayed());
         Assert.assertEquals(phoneIconViberClass, phoneIconViber.getAttribute(PageUtils.ElementAttributes.clas));
-        // TODO check the element location in webPage.
+        // TODO check the element location on webPage.
     }
 
-    @Description("Smoke test: Phone numbers testing.")
+    @Description("Smoke main page test: Phone numbers testing.")
     @Test()
     public void basketTest() {
         MainPage mainPage = new MainPage(driver);
@@ -251,10 +248,10 @@ public class MainPageTest extends WebDriverTestBase {
         WebElement basketProductQuantity = mainPage.searchElementByLocator(mainPage.getBasketResultProductQuantityByID());
         Assert.assertTrue(basketProductQuantity.isDisplayed());
         Assert.assertEquals(zeroValue, basketProductQuantity.getText());
-        // TODO check the element location in webPage.
+        // TODO check the element location on webPage.
     }
 
-    @Description("Smoke test: Head menu bar testing.")
+    @Description("Smoke main page test: Head menu bar testing.")
     @Test()
     public void menuBarTest() {
         MainPage mainPage = new MainPage(driver);
@@ -285,10 +282,10 @@ public class MainPageTest extends WebDriverTestBase {
         Assert.assertEquals(accessoriesLinkText.toUpperCase(), accessoriesLink.getText());
         Assert.assertEquals(brandsLinkText.toUpperCase(), brandsLink.getText());
         Assert.assertEquals(saleLinkText.toUpperCase(), saleLink.getText());
-        // TODO check the elements location in webPage.
+        // TODO check the elements location on webPage.
     }
 
-    @Description("Smoke test: Slideshow bar testing.")
+    @Description("Smoke main page test: Slideshow bar testing.")
     @Test()
     public void slideshowBarTest() {
         MainPage mainPage = new MainPage(driver);
@@ -335,10 +332,10 @@ public class MainPageTest extends WebDriverTestBase {
         WebElement owlScriptElement = mainPage.searchElementByLocator(mainPage.getSlideshowCarouselByXpath());
         Assert.assertEquals(owlCarouselType, owlScriptElement.getAttribute(PageUtils.ElementAttributes.type));
         Assert.assertEquals(owlCarouselScriptCode, owlScriptElement.getAttribute(PageUtils.ElementAttributes.textContent));
-        // TODO check the elements location in webPage.
+        // TODO check the elements location on webPage.
     }
 
-    @Description("Smoke test: Banners small bar testing.")
+    @Description("Smoke main page test: Banners small bar testing.")
     @Test()
     public void bannersSmallBarTest() {
         MainPage mainPage = new MainPage(driver);
@@ -373,10 +370,10 @@ public class MainPageTest extends WebDriverTestBase {
                 containsAll(bannersAltAntTitleList));
         Assert.assertTrue(mainPage.stringListCreation(bannersElementsAttributes, PageUtils.ElementAttributes.title).
                 containsAll(bannersAltAntTitleList));
-        // TODO check the elements location in webPage.
+        // TODO check the elements location on webPage.
     }
 
-    @Description("Smoke test: Recommended products block title testing.")
+    @Description("Smoke main page test: Recommended products block title testing.")
     @Test()
     public void productBlockRecommendedTitleTest() {
         MainPage mainPage = new MainPage(driver);
@@ -385,10 +382,10 @@ public class MainPageTest extends WebDriverTestBase {
         WebElement productBlockTitle = mainPage.searchElementByLocator(mainPage.getProductBlockRecommendedTitleByXpath());
         Assert.assertTrue(productBlockTitle.isDisplayed());
         Assert.assertEquals(productBlockRecommendedTitleText.toUpperCase(), productBlockTitle.getText());
-        // TODO check the elements location in webPage.
+        // TODO check the elements location on webPage.
     }
 
-    @Description("Smoke test: Recommended products block testing.")
+    @Description("Smoke main page test: Recommended products block testing.")
     @Test()
     public void productBlockRecommendedTest() {
         MainPage mainPage = new MainPage(driver);
@@ -440,10 +437,10 @@ public class MainPageTest extends WebDriverTestBase {
         Assert.assertEquals(intEight, productBlockPrice.size());
         Assert.assertTrue(mainPage.elementsContainsText(productBlockPrice));
         Assert.assertTrue(mainPage.elementsVisibility(productBlockPrice));
-        // TODO check the elements location in webPage.
+        // TODO check the elements location on webPage.
     }
 
-    @Description("Smoke test: Banners big bar testing.")
+    @Description("Smoke main page test: Banners big bar testing.")
     @Test()
     public void bannersBigBarTest() {
         MainPage mainPage = new MainPage(driver);
@@ -472,10 +469,10 @@ public class MainPageTest extends WebDriverTestBase {
                 containsAll(bannersAltAntTitleList));
         Assert.assertTrue(mainPage.stringListCreation(bannersElementsAttributes, PageUtils.ElementAttributes.title).
                 containsAll(bannersAltAntTitleList));
-        // TODO check the elements location in webPage.
+        // TODO check the elements location on webPage.
     }
 
-    @Description("Smoke test: New arrivals block title testing.")
+    @Description("Smoke main page test: New arrivals block title testing.")
     @Test()
     public void productBlockNewArrivalsTitleTest() {
         MainPage mainPage = new MainPage(driver);
@@ -484,10 +481,10 @@ public class MainPageTest extends WebDriverTestBase {
         WebElement productBlockTitle = mainPage.searchElementByLocator(mainPage.getProductBlockNewArrivalsTitleByXpath());
         Assert.assertTrue(productBlockTitle.isDisplayed());
         Assert.assertEquals(productBlockNewArrivalsTitleText.toUpperCase(), productBlockTitle.getText());
-        // TODO check the elements location in webPage.
+        // TODO check the elements location on webPage.
     }
 
-    @Description("Smoke test: New arrivals product block testing.")
+    @Description("Smoke main page test: New arrivals product block testing.")
     @Test()
     public void productBlockNewArrivalsTest() {
         MainPage mainPage = new MainPage(driver);
@@ -539,10 +536,10 @@ public class MainPageTest extends WebDriverTestBase {
         Assert.assertEquals(productBlockNewArrivalsRecommendedQuantity, productBlockPrice.size());
         Assert.assertTrue(mainPage.elementsContainsText(productBlockPrice));
         Assert.assertTrue(mainPage.elementsVisibility(productBlockPrice));
-        // TODO check the elements location in webPage.
+        // TODO check the elements location on webPage.
     }
 
-    @Description("Smoke test: News block title testing.")
+    @Description("Smoke main page test: News block title testing.")
     @Test()
     public void productBlockNewsTitleTest() {
         MainPage mainPage = new MainPage(driver);
@@ -551,10 +548,10 @@ public class MainPageTest extends WebDriverTestBase {
         WebElement productBlockTitle = mainPage.searchElementByLocator(mainPage.getNewsBlockTitleByXpath());
         Assert.assertTrue(productBlockTitle.isDisplayed());
         Assert.assertEquals(productBlocNewsTitleText.toUpperCase(), productBlockTitle.getText());
-        // TODO check the elements location in webPage.
+        // TODO check the elements location on webPage.
     }
 
-    @Description("Smoke test: News block testing.")
+    @Description("Smoke main page test: News block testing.")
     @Test()
     public void newsBlockTest() {
         MainPage mainPage = new MainPage(driver);
@@ -588,9 +585,10 @@ public class MainPageTest extends WebDriverTestBase {
         Assert.assertEquals(intFour, newsDescriptions.size());
         Assert.assertTrue(mainPage.elementsContainsText(newsDescriptions));
         Assert.assertTrue(mainPage.elementsVisibility(newsDescriptions));
+        // TODO check the element location on webPage.
     }
 
-    @Description("Smoke test: Show-more button testing.")
+    @Description("Smoke main page test: Show-more button testing.")
     @Test()
     public void showMoreButtonTest() {
         MainPage mainPage = new MainPage(driver);
@@ -599,9 +597,10 @@ public class MainPageTest extends WebDriverTestBase {
         WebElement showMoreButton = mainPage.searchElementByLocator(mainPage.getShowMoreButtonXpathLocator());
         Assert.assertTrue(showMoreButton.isDisplayed());
         Assert.assertEquals(showMoreButtonText, showMoreButton.getText());
+        // TODO check the element location on webPage.
     }
 
-    @Description("Smoke test: Block 1 footer testing.")
+    @Description("Smoke main page test: Block 1 footer testing.")
     @Test()
     public void footerBlockOneTest() {
         MainPage mainPage = new MainPage(driver);
@@ -659,9 +658,10 @@ public class MainPageTest extends WebDriverTestBase {
                 PageUtils.ElementAttributes.clas, footerSalesClass));
         Assert.assertEquals(mainPage.stringListTextCreation(footerBlockOneStayUpToDateElements), footerStayUpToDateText);
         Assert.assertTrue(mainPage.elementsVisibility(footerBlockOneStayUpToDateElements));
+        // TODO check the element location on webPage.
     }
 
-    @Description("Smoke test: Block 2 footer (social) testing.")
+    @Description("Smoke main page test: Block 2 footer (social) testing.")
     @Test()
     public void footerBlockTwoTest() {
         MainPage mainPage = new MainPage(driver);
@@ -681,12 +681,25 @@ public class MainPageTest extends WebDriverTestBase {
         Assert.assertEquals(intSeven, footerBlockTwoSocialIcons.size());
         Assert.assertTrue(mainPage.stringListCreation(footerBlockTwoSocialIcons, PageUtils.ElementAttributes.clas).
                 containsAll(footerSocialIconsClass));
-        Assert.assertTrue(mainPage.checkIfAttributeValueIsPresent(footerBlockTwoSocialIcons,PageUtils.ElementAttributes.target,
+        Assert.assertTrue(mainPage.checkIfAttributeValueIsPresent(footerBlockTwoSocialIcons, PageUtils.ElementAttributes.target,
                 targetTagValue));
         List<String> footerSocialIconsLinksList = Arrays.asList(vkLinkVershyna, fbLinkVershyna, googlePlusLinkVershyna,
                 instagramLinkVershyna, blogLinkVershyna, youTubeLinkVershyna, skypeLinkVershyna);
         Assert.assertTrue(mainPage.stringListCreation(footerBlockTwoSocialIcons, PageUtils.ElementAttributes.href).containsAll(footerSocialIconsLinksList));
         Assert.assertTrue(mainPage.elementsVisibility(footerBlockTwoSocialIcons));
+        // TODO check the element location on webPage.
+    }
+
+    @Description("Smoke main page test: Block 3 footer (copyright) testing.")
+    @Test()
+    public void footerBlockThreeTest() {
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertEquals(mainPageTitle, driver.getTitle());
+
+        WebElement footerBlockThree = mainPage.searchElementByLocator(mainPage.getCopyrightXpathLocator());
+        Assert.assertTrue(footerBlockThree.isDisplayed());
+        Assert.assertEquals(copyrightVershynaText, footerBlockThree.getText());
+        // TODO check the element location on webPage.
     }
 
 }

@@ -45,6 +45,7 @@ public class MainPage extends AbstractPage {
     private By showMoreButtonXpathLocator = By.xpath(".//*[@id='bottom-description']/a");
     private By footerBlockOneXpathLocator = By.xpath(".//*[@id='footer']/div[@class='block1']/div[@class='wrapper']/div[@class='menu']");
     private By footerBlockTwoIDLocator = By.id("footer-social");
+    private By footerBlockThreeCopyrightXpathLocator = By.xpath(".//*[@id='footer']/div[@class='block3']/div[@class='wrapper']/div[@class='copyright']");
 
 
     public By getLogoByXpath() {
@@ -141,6 +142,10 @@ public class MainPage extends AbstractPage {
 
     public By getFooterBlockTwoIDLocator() {
         return footerBlockTwoIDLocator;
+    }
+
+    public By getCopyrightXpathLocator() {
+        return footerBlockThreeCopyrightXpathLocator;
     }
 
     @Step("Main page opening")
