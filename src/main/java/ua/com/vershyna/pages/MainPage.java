@@ -46,6 +46,8 @@ public class MainPage extends AbstractPage {
     private By footerBlockOneXpathLocator = By.xpath(".//*[@id='footer']/div[@class='block1']/div[@class='wrapper']/div[@class='menu']");
     private By footerBlockTwoIDLocator = By.id("footer-social");
     private By footerBlockThreeCopyrightXpathLocator = By.xpath(".//*[@id='footer']/div[@class='block3']/div[@class='wrapper']/div[@class='copyright']");
+    private By onlineConsultationButtonXpathLocator = By.xpath(".//*[@id='olark-wrapper']/button[@class='olark-launch-button olark-chat-tab olark-size-md']");
+    private By onlineConsultationContainerXpathLocator = By.xpath(".//*[@id='olark-wrapper']/div[@id='olark-container']");
 
 
     public By getLogoByXpath() {
@@ -146,6 +148,14 @@ public class MainPage extends AbstractPage {
 
     public By getCopyrightXpathLocator() {
         return footerBlockThreeCopyrightXpathLocator;
+    }
+
+    public By getConsultationButtonXpathLocator() {
+        return onlineConsultationButtonXpathLocator;
+    }
+
+    public By getConsultationContainerXpathLocator() {
+        return onlineConsultationContainerXpathLocator;
     }
 
     @Step("Main page opening")

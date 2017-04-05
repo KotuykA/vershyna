@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.allure.annotations.Step;
 import ua.com.vershyna.util.PropertiesCache;
 
@@ -64,6 +66,12 @@ public abstract class AbstractPage {
     public List<String> elementsToLowercase(List<String> elementsString) {
         elementsString.replaceAll(String::toLowerCase);
         return elementsString;
+    }
+
+    @Step("Wait for expected condition.")
+    public void waitForExpectedCondition(WebDriver driver, ExpectedCondition expectedCondition) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(expectedCondition);
     }
 
 }

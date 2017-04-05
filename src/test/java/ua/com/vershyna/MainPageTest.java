@@ -3,6 +3,7 @@ package ua.com.vershyna;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -136,6 +137,8 @@ public class MainPageTest extends WebDriverTestBase {
     private String youTubeLinkVershyna = "http://www.youtube.com/vershyna";
     private String skypeLinkVershyna = "skype:vershyna-kiev?chat";
     private String copyrightVershynaText = "© 2010-2017 Интернет-магазин \"Вершина\"";
+    private String onlineConsultationXpathLocator = "p";
+    private String onlineConsultationText = "Напишите нам!";
 
 
     private String emptyString = "";
@@ -699,6 +702,26 @@ public class MainPageTest extends WebDriverTestBase {
         WebElement footerBlockThree = mainPage.searchElementByLocator(mainPage.getCopyrightXpathLocator());
         Assert.assertTrue(footerBlockThree.isDisplayed());
         Assert.assertEquals(copyrightVershynaText, footerBlockThree.getText());
+        // TODO check the element location on webPage.
+    }
+
+    @Description("Smoke main page test: Online consultation button testing.")
+    @Test()
+    public void onlineConsultationTest() {
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertEquals(mainPageTitle, driver.getTitle());
+
+        mainPage.waitForExpectedCondition(driver,
+                ExpectedConditions.visibilityOfElementLocated(mainPage.getConsultationButtonXpathLocator()));
+
+        WebElement onlineConsultationButton = mainPage.searchElementByLocator(mainPage.getConsultationButtonXpathLocator());
+        Assert.assertTrue(onlineConsultationButton.isDisplayed());
+
+        String buttonText = onlineConsultationButton.findElement(By.xpath(onlineConsultationXpathLocator)).getText();
+        Assert.assertEquals(onlineConsultationText, buttonText);
+
+        WebElement onlineConsultationContainer = mainPage.searchElementByLocator(mainPage.getConsultationContainerXpathLocator());
+        Assert.assertFalse(onlineConsultationContainer.isDisplayed());
         // TODO check the element location on webPage.
     }
 
