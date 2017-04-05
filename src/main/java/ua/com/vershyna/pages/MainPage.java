@@ -44,8 +44,7 @@ public class MainPage extends AbstractPage {
     private By productBlockNewsByXpath = By.xpath(".//*[@id='content']/div[@class='block block-news']/div");
     private By showMoreButtonXpathLocator = By.xpath(".//*[@id='bottom-description']/a");
     private By footerBlockOneXpathLocator = By.xpath(".//*[@id='footer']/div[@class='block1']/div[@class='wrapper']/div[@class='menu']");
-
-
+    private By footerBlockTwoIDLocator = By.id("footer-social");
 
 
     public By getLogoByXpath() {
@@ -121,7 +120,8 @@ public class MainPage extends AbstractPage {
     }
 
     public By getProductBlockNewArrivalsByXpath() {
-        return productBlockNewArrivalsByXpath;}
+        return productBlockNewArrivalsByXpath;
+    }
 
     public By getNewsBlockTitleByXpath() {
         return productBlockNewsTitleByXpath;
@@ -139,6 +139,10 @@ public class MainPage extends AbstractPage {
         return footerBlockOneXpathLocator;
     }
 
+    public By getFooterBlockTwoIDLocator() {
+        return footerBlockTwoIDLocator;
+    }
+
     @Step("Main page opening")
     public void openMainPage() {
         openPage(PageUtils.VESHYNA_BASE_URL);
@@ -147,8 +151,7 @@ public class MainPage extends AbstractPage {
     @Step("Creating list of the header Elements")
     public List<WebElement> headerElementsListCreation() {
         WebElement table = searchElementByLocator(headerTopByXpath);
-        List<WebElement> allElements = table.findElements(By.tagName("a"));
-        return allElements;
+        return table.findElements(By.tagName("a"));
     }
 
     @Step("Creating list of the head menu links")
@@ -181,8 +184,7 @@ public class MainPage extends AbstractPage {
     @Step("Creation List<WebElement> via the xpath and main element locator ")
     public List<WebElement> webElementsListCreation(By mainElementLocator, String xPathLocator) {
         WebElement mainElementToSearchIn = searchElementByLocator(mainElementLocator);
-        List<WebElement> elementsList = mainElementToSearchIn.findElements(By.xpath(xPathLocator));
-        return elementsList;
+        return mainElementToSearchIn.findElements(By.xpath(xPathLocator));
     }
 
     @Step("Creation List<String> via the tagName from List<WebElement>")
@@ -229,8 +231,6 @@ public class MainPage extends AbstractPage {
     public boolean elementsContainsText(List<WebElement> webElementList) {
         for (int i = 0; i < webElementList.size(); i++) {
             if (webElementList.get(i).getText().length() == 0) {
-                System.out.println(webElementList.get(i).toString());
-                System.out.println(webElementList.get(i).getText().length());
                 return false;
             }
         }

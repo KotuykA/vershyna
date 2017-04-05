@@ -82,6 +82,7 @@ public class MainPageTest extends WebDriverTestBase {
     private String buffSmallBannerLocation = PageUtils.VESHYNA_BASE_URL + PageUtils.BANNERS_CATALOG_URL + "mainpage/home-brands-block-buff-51x50.png";
     private String productBlockRecommendedTitleText = "Рекомендуемые";
     private int intEight = 8;
+    private int intSeven = 7;
     private int intSix = 6;
     private int intFour = 4;
     private int intThree = 3;
@@ -121,6 +122,23 @@ public class MainPageTest extends WebDriverTestBase {
     private List<String> footerStayUpToDateLinks = Arrays.asList(PageUtils.VESHYNA_BASE_URL + "novinki",
             PageUtils.VESHYNA_BASE_URL + "news", PageUtils.VESHYNA_BASE_URL + "blog");
     private String footerBlockOneStayUpToDateXpathLocator = "div[4]/ul/li/a";
+    private String footerBlockTwoHeadersXpathLocator = "div/span";
+    private List<String> footerSocialHeaderText = Arrays.asList("Присоединяйтесь в соцсетях:".toUpperCase(),
+            "Читайте и\n".toUpperCase() + "смотрите обзоры".toUpperCase(), "Будьте на связи\n".toUpperCase() + "с нами".toUpperCase());
+    private List<String> footerSocialIconsClass = Arrays.asList("vk-b", "fb-b","gp-b", "ig-b","bl-b","yt-b","sk-b");
+    private String footerBlockTwoSocialIconsXpathLocator = "div/a";
+    private String targetTagValue = "_blank";
+    private String vkLinkVershyna = "http://vk.com/vershyna";
+    private String fbLinkVershyna = "http://www.facebook.com/pages/%D0%92%D0%B5%D1%80%D1%88%D0%B8%D0%BD%D0%B0-%D1%82%D1%83%D1%80%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5-%D1%81%D0%BD%D0%B0%D1%80%D1%8F%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5/191115290987696";
+    private String googlePlusLinkVershyna = "https://www.google.com/+VershynaUa";
+    private String instagramLinkVershyna = "http://instagram.com/vershynacomua";
+    private String blogLinkVershyna = "https://vershyna.com.ua/blog";
+    private String youTubeLinkVershyna = "http://www.youtube.com/vershyna";
+    private String skypeLinkVershyna = "skype:vershyna-kiev?chat";
+
+
+
+
 
 
     private String emptyString = "";
@@ -641,6 +659,34 @@ public class MainPageTest extends WebDriverTestBase {
                 PageUtils.ElementAttributes.clas, footerSalesClass));
         Assert.assertEquals(mainPage.stringListTextCreation(footerBlockOneStayUpToDateElements), footerStayUpToDateText);
         Assert.assertTrue(mainPage.elementsVisibility(footerBlockOneStayUpToDateElements));
+    }
+
+    @Description("Smoke test: Block 2 footer (social) testing.")
+    @Test()
+    public void footerBlockTwoTest() {
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertEquals(mainPageTitle, driver.getTitle());
+
+        WebElement footerBlockTwo = mainPage.searchElementByLocator(mainPage.getFooterBlockTwoIDLocator());
+        Assert.assertTrue(footerBlockTwo.isDisplayed());
+
+        List<WebElement> footerBlockTwoGeneral = mainPage.webElementsListCreation(mainPage.getFooterBlockTwoIDLocator(),
+                footerBlockTwoHeadersXpathLocator);
+        Assert.assertEquals(intThree, footerBlockTwoGeneral.size());
+        Assert.assertTrue(mainPage.stringListTextCreation(footerBlockTwoGeneral).containsAll(footerSocialHeaderText));
+        Assert.assertTrue(mainPage.elementsVisibility(footerBlockTwoGeneral));
+
+        List<WebElement> footerBlockTwoSocialIcons = mainPage.webElementsListCreation(mainPage.getFooterBlockTwoIDLocator(),
+                footerBlockTwoSocialIconsXpathLocator);
+        Assert.assertEquals(intSeven, footerBlockTwoSocialIcons.size());
+        Assert.assertTrue(mainPage.stringListCreation(footerBlockTwoSocialIcons, PageUtils.ElementAttributes.clas).
+                containsAll(footerSocialIconsClass));
+        Assert.assertTrue(mainPage.checkIfAttributeValueIsPresent(footerBlockTwoSocialIcons,PageUtils.ElementAttributes.target,
+                targetTagValue));
+        List<String> footerSocialIconsLinksList = Arrays.asList(vkLinkVershyna, fbLinkVershyna, googlePlusLinkVershyna,
+                instagramLinkVershyna, blogLinkVershyna, youTubeLinkVershyna, skypeLinkVershyna);
+        Assert.assertTrue(mainPage.stringListCreation(footerBlockTwoSocialIcons, PageUtils.ElementAttributes.href).containsAll(footerSocialIconsLinksList));
+        Assert.assertTrue(mainPage.elementsVisibility(footerBlockTwoSocialIcons));
     }
 
 }

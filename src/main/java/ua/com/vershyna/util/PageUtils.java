@@ -26,6 +26,7 @@ public class PageUtils {
         public static final String alt = "alt";
         public static final String style = "style";
         public static final String textContent = "textContent";
+        public static final String target = "target";
     }
 
     public static class ElementTags {
